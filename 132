@@ -1,0 +1,77 @@
+local WindUI
+
+do
+    local ok, result = pcall(function()
+        return require("./src/Init")
+    end)
+    
+    if ok then
+        WindUI = result
+    else 
+        WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+    end
+end
+
+
+-- */  Window  /* --
+local Window = WindUI:CreateWindow({
+    Title = "Hubs Hub",
+    Author = "by scripthub",
+    Folder = "scripthub",
+    NewElements = true,
+    Size = UDim2.fromOffset(580, 460),
+    MinSize = Vector2.new(560, 350),
+    MaxSize = Vector2.new(850, 560),
+    Transparent = true,
+    Theme = "Dark",
+    Resizable = true,
+    SideBarWidth = 200,
+    BackgroundImageTransparency = 0.42,
+    HideSearchBar = true,
+    ScrollBarEnabled = false,
+    HideSearchBar = false,
+    
+    OpenButton = {
+        Title = "AutoFarm", -- can be changed
+        CornerRadius = UDim.new(1,0), -- fully rounded
+        StrokeThickness = 3, -- removing outline
+        Enabled = true, -- enable or disable openbutton
+        Draggable = true,
+        OnlyMobile = false,
+        
+        Color = ColorSequence.new( -- gradient
+            Color3.fromHex("#30FF6A"), 
+            Color3.fromHex("#e7ff2f")
+        )
+    }
+})
+    local Tab = Window:Tab({
+         Title = "AutoFarm",
+         Icon = "lucide:audio-lines", -- optional
+         Locked = false,
+})
+    local Toggle = Tab:Toggle({
+         Title = "AutoFarm",
+         Desc = "On and Off",
+         Icon = "lucide:file-clock",
+         Type = "Checkbox",
+         Value = false, -- default value
+         Callback = function(state) 
+            print("Toggle Activated" .. tostring(state))
+    end
+})
+    local Tab = Window:Tab({
+         Title = "Anti-Afk",
+         Icon = "lucide:hourglass", -- optional
+         Locked = false,
+})
+    Window:Tag({
+         Title = "MainUI",
+         Color = Color3.fromHex("#30ff6a"),
+         Radius = 13, -- from 0 to 13
+})
+    Window:Tag({
+         Title = "V2",
+         Color = Color3.fromHex("#FF0000"),
+         Radius = 13, -- from 0 to 13
+})
